@@ -3,7 +3,9 @@ This script schedules system shutdown at a pre-defined time (23:00 by default). 
 to stop playing games and go to bed at a proper time. If computer is turned on after 
 shutdown time, but before 23:59, the immediate shutdown is triggered.
 
-**Note**: shutdown time between 00:00 and 12:00 is not supported. That 
+**Note**: shutdown time between 00:00 and 12:00 is not supported. There are 2 reasons for that:
+- I don't think it makes much sense for a healthy lifestyle to go to bed after 23:59
+- If user tries to set 11:00 meaning 23:00, he will end up being locked from his computer for the rest of the day
 
 # Compatibility
 - The shutdown time is specified in a system-default timezone in a 24-hour format. 
