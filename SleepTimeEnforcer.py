@@ -49,7 +49,7 @@ def main():
     # Using powershell is required here, because if shutdown time is > 10 minutes,
     # shutdown.exe issues a warning 10 minutes before shutdown. It disrupts user when playing games
     # See https://superuser.com/a/559755 for details
-    command = ["powershell.exe", "-WindowStyle Hidden", "-Command",
+    command = ["powershell.exe", "-WindowStyle", "Hidden", "-Command",
                "sleep %s; shutdown -s -t %s" % (sleep_time, shutdown_final_countdown_seconds)]
     print("Running command " + pprint.pformat(command))
     subprocess.check_call(command)
