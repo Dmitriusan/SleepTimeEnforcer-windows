@@ -31,7 +31,7 @@ def get_shutdown_time():
 
 
 def main():
-    shutdown_final_countdown_seconds = 60  # Value of argument passed to shutdown command.
+    shutdown_final_countdown_seconds = 3  # Value of argument passed to shutdown command.
 
     shutdown_time = get_shutdown_time()
     time_delta = datetime.combine(date.today(), shutdown_time) - datetime.now()
@@ -50,7 +50,7 @@ def main():
     # shutdown.exe issues a warning 10 minutes before shutdown. It disrupts user when playing games
     # See https://superuser.com/a/559755 for details
     command = ["powershell.exe", "-WindowStyle", "Hidden", "-Command",
-               "sleep %s; shutdown -s -t %s" % (sleep_time, shutdown_final_countdown_seconds)]
+               "sleep %s; shutdown /p " % sleep_time]
     print("Running command " + pprint.pformat(command))
     subprocess.check_call(command)
 
