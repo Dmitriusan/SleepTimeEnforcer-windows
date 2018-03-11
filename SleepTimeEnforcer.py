@@ -16,7 +16,7 @@ def error_out(message):
 
 def get_shutdown_time():
     if len(sys.argv) == 1:  # If no arguments have been specified to script
-        shutdown_time = time(23, 0)
+        shutdown_time = time(23, 0)  # use default value 23:00
     elif len(sys.argv) == 2:  # If shutdown time has been explicitly specified
         custom_shutdown_time_str = sys.argv[1]
         try:
@@ -26,7 +26,7 @@ def get_shutdown_time():
     else:
         error_out("Too many arguments specified")
     if time(0, 0) < shutdown_time <= time(6, 0):
-        error_out("Shutdown time between 00:00AM and 6:00AM is not supported.")
+        error_out("Shutdown time between 00:00 and 12:00 is not supported.")
     return shutdown_time
 
 
@@ -49,7 +49,7 @@ def main():
     # Using powershell is required here, because if shutdown time is > 10 minutes,
     # shutdown.exe issues a warning 10 minutes before shutdown. It disrupts user when playing games
     # See https://superuser.com/a/559755 for details
-    command = ["start", "powershell.exe", "-WindowStyle Hidden", "-Command",
+    command = ["powershell.exe", "-WindowStyle Hidden", "-Command",
                "sleep %s; shutdown -s -t %s" % (sleep_time, shutdown_final_countdown_seconds)]
     print("Running command " + pprint.pformat(command))
     subprocess.check_call(command)
